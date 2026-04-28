@@ -1,0 +1,23 @@
+from openai import OpenAI
+
+# 1. Connexion au client OpenAI
+client = OpenAI(api_key="VOTRE_CLE_API")
+
+# 2. Préparation du prompt
+prompt = """
+Tu es un assistant expert. Réponds de manière claire et concise :
+Explique la différence entre une IA générative et une IA classique.
+"""
+
+# 3. Appel au modèle GPT-5
+response = client.chat.completions.create(
+    model="gpt-5",
+    messages=[
+        {"role": "system", "content": "You are a helpful expert assistant."},
+        {"role": "user", "content": prompt}
+    ]
+)
+
+# 4. Affichage de la réponse
+print("Réponse du modèle :")
+print(response.choices[0].message["content"])
